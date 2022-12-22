@@ -74,7 +74,8 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
+    max-width: calc(100% - 40px);
+    margin: 20px;
     margin-bottom: $logo-margin;
   }
 
@@ -287,9 +288,10 @@ html, body {
     display: inline;
     color: $lang-select-text;
     text-decoration: none;
-    padding: 0 10px;
+    padding: 10px 20px; /* 0 10px; */
     line-height: 30px;
     outline: 0;
+    border-top: 4px solid #222;
 
     &:active, &:focus {
       background-color: $lang-select-pressed-bg;
@@ -299,6 +301,7 @@ html, body {
     &.active {
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
+      border-top-color: #f8b020;
     }
   }
 
@@ -630,4 +633,15 @@ html, body {
 
 .copy-clipboard:hover {
   opacity: 0.8;
+}
+
+
+code.definition {
+  display: block;
+  padding: 10px;
+  font-size: 15px;
+  & > b {
+    font-weight: 600;
+    color: #4555a3;
+  }
 }
