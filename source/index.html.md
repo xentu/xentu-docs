@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Xentu Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript: JavaScript
@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python: Python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://xentu.net'>Visit The Main Website</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -29,6 +29,8 @@ search: true
 code_clipboard: true
 
 meta:
-  - name: description
-    content: Documentation for the Xentu game engine
+  - name: "og:type"
+    content: "website"
+  - name: "og:url"
+    content: "https://docs.xentu.net/index.html"
 ---

@@ -305,7 +305,7 @@ animation into the game with very little time investment.
 
 ## assets.create_textbox
 
-<code class="definition">assets.create_textbox(<b>float</b> <b>float</b> x, <b>float</b> y, <b>float</b> w, <b>float</b> h)</code>
+<code class="definition">assets.create_textbox(<b>float</b> x, <b>float</b> y, <b>float</b> w, <b>float</b> h)</code>
 
 ```javascript
 const textbox_id = assets.create_textbox(10, 10, 300, 90);

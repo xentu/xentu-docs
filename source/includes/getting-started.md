@@ -62,6 +62,78 @@ There are concrete plans for ports to DirectX 9, 10, Android & iOS next year.
 And a port to WASM in 2024. Each will change the minimums slightly and open 
 doors for more devices over time.
 
+## About This Documentation
+
+This is a technical documentation for the Xentu game engine project. The main 
+purpose it to provide explanation and guides for how to write game code to work
+with the engine.
+
+### Conventions
+
+The documentation is split up into larger categories to help you understand how
+the various parts of the game engine work. For example the [Asset System](#asset-system) 
+section provides techniques on how to load assets into a game. 
+
+Sub-headings for these sections are for most part descriptions for the various 
+functions that you can call within your game code. For each function, you'll
+see a function definition that looks like this:
+
+```javascript
+if (keyboard.key_clicked(KB_ESCAPE)) {
+	// do something.
+}
+```
+```lua
+if keyboard.key_clicked(KB_ESCAPE) then
+	-- do something.
+end
+```
+```python
+if keyboard.key_clicked(KB_ESCAPE):
+	# do something.
+```
+
+<code class="definition"><b>bool</b> result = input.key_clicked(<b>int</b> keycode)</code>
+
+This definition is pseudo-code, and should not be copied as is. It's purpose is
+to explain how the function should be called. You'll usually also see to the 
+right of the definition an example of how the code definition should be used.
+
+The first part tells you that you should expect a result from the function of type
+bool (or boolean). Sometimes this part including the = equals symbol is omitted
+meaning the function does not return any information.
+
+The `input.key_clicked` is the name of the function, and within the (
+ round brackets ) you'll optionally see a comma separated list of arguments that 
+you should pass when calling the function.
+
+Here is a list of types that you'll commonly see in a function definition:
+
+Type | Description
+---- | -----------
+bool | Boolean (true or false)
+int  | Integer (signed +/-), numerical value without floating point.
+enum | One of several pre-defined values (an integer under the hood).
+float | Floating point numerical value.
+double | Double precision floating point numerical value.
+string | Represents a textual value (sequence of characters).
+mixed  | Means the type can be any of the above.
+
+### Language & Spelling Notes
+
+This documentation is written in (British) English, however coding convention
+for English speaking countries is to use American spellings for certain words. 
+So in some places you may see substitutions for words like `colour` to `color` 
+to maintain this convention. 
+
+## Where are the v0.0.1 docs?
+
+The documentation for v0.0.1 docs has been moved to the following URL: [https://docs.xentu.net/0.0.1/](https://docs.xentu.net/0.0.1/)
+
+It will be kept live indefinitely for historic purposes, however I do not 
+recommend using it as a guide for versions newer than 0.0.1 as the engine was
+completely rebuilt from the ground up.
+
 # Xentu Creator
 
 Xentu Creator is a cross-platform, also free to use IDE (integrated development environment) built in C# on the Avalonia framework.
