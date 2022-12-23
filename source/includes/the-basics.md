@@ -363,6 +363,53 @@ get the ability to draw layers, which can be very useful when building the visua
 hierarchy of your game.
 
 
+## The key_down event
+
+```javascript
+// handle the draw event
+game.on("key_down", function(key_code) {
+	print("key down " + key_code.toString());
+})
+```
+```lua
+-- handle the draw event
+game.on("key_down", function(key_code)
+   print("key down " .. key_code)
+end)
+```
+```python
+# handle the draw event
+def key_down(key_code):
+	print("key down " + str(key_code))
+```
+
+The key_down event tells you when a key on the keyboard has been pressed. As this
+is buffered, it is recommended that you use the [keyboard.key_down](#keyboard-key_down) 
+function instead if you need to know immediately when a key is pressed.
+
+## The key_click event
+
+```javascript
+// handle the draw event
+game.on("key_click", function(key_code) {
+	print("key clicked " + key_code.toString());
+})
+```
+```lua
+-- handle the draw event
+game.on("key_click", function(key_code)
+   print("key clicked " .. key_code)
+end)
+```
+```python
+# handle the draw event
+def key_down(key_code):
+	print("key down " + str(key_code))
+```
+
+The key_click event tells you when a key on the keyboard has been clicked (meaning
+that the key was pressed, then released).
+
 ## Custom Events
 
 > The code below should output to the console "my_event was triggered!"

@@ -324,3 +324,99 @@ text can be measured, and drawn.
 So to draw text, we first need to create textbox areas using this method. The
 argument specified remain fixed whilst the textbox exists, however a textbox is
 affected by global transforms, so you can move, size and rotate in other ways.
+
+## assets.unload_texture
+
+<code class="definition">assets.unload_texture(<b>int</b> asset_id)</code>
+
+Unload a texture.
+
+```javascript
+assets.unload_texture(texture0);
+```
+```lua
+assets.unload_texture(texture0)
+```
+```python
+assets.unload_texture(texture0)
+```
+
+## assets.unload_font
+
+<code class="definition">assets.unload_font(<b>int</b> asset_id)</code>
+
+Unload a font.
+
+```javascript
+assets.unload_font(font0);
+```
+```lua
+assets.unload_font(font0)
+```
+```python
+assets.unload_font(font0)
+```
+
+## assets.unload_sound
+
+<code class="definition">assets.unload_sound(<b>int</b> asset_id)</code>
+
+Unload a sound.
+
+```javascript
+assets.unload_sound(sound0);
+```
+```lua
+assets.unload_sound(sound0)
+```
+```python
+assets.unload_sound(sound0)
+```
+
+## assets.unload_music
+
+<code class="definition">assets.unload_music(<b>int</b> asset_id)</code>
+
+Unload music.
+
+```javascript
+assets.unload_music(music0);
+```
+```lua
+assets.unload_music(music0)
+```
+```python
+assets.unload_music(music0)
+```
+
+## assets.unload_shader
+
+<code class="definition">assets.unload_shader(<b>int</b> asset_id)</code>
+
+Unload a shader.
+
+```javascript
+assets.unload_shader(shader0);
+```
+```lua
+assets.unload_shader(shader0)
+```
+```python
+assets.unload_shader(shader0)
+```
+
+## assets.unload_sprite_map
+
+<code class="definition">assets.unload_sprite_map(<b>int</b> asset_id)</code>
+
+Unload a sprite map.
+
+```javascript
+assets.unload_sprite_map(spriteMap0);
+```
+```lua
+assets.unload_sprite_map(spriteMap0)
+```
+```python
+assets.unload_sprite_map(spriteMap0)
+```
