@@ -51,6 +51,7 @@ is decided when your `game.json` file is first loaded.
 		"version": "0.0.0",
 		"v_sync": true,
 		"fullscreen": false,
+		"resizable": true,
 		"update_frequency": 60,
 		"draw_frequency": 60,
 		"window": {
@@ -83,6 +84,7 @@ entry_point | The file that contains your code, can be of type `.js` or `.lua` s
 version | The version of your game.
 v_sync | Whether or not to enable v-sync.
 fullscreen | Whether or not to start the game in full-screen mode.
+resizable | Whether or not the window is resizable when not full-screen.
 update_frequency | Specify how many times a second to call the update event.
 draw_frequency | Specify a target draw calls per second (0 for unlimited).
 window | Specifies the size (width and height) of the window to create.
@@ -234,220 +236,15 @@ at the top right of this website to select the code language you wish to see
 examples for.
 
 Currently the most popular language for writing games in Xentu is JavaScript. 
-The engine also allows Lua (and soon Python).
+The engine also includes Lua, and Python.
 
 Each of the supported languages have the same features available, though some
 languages provide their own benefits. For example JavaScript has a more familiar
 and easy to read syntax, while Lua and Python have shorthand tricks up their 
 sleeve for getting more done with less code.
 
-## Events
-
-Xentu uses an event system for communicating engine events to your script code.
-For example when the engine wants to draw a frame, it sends a draw event to 
-your code, so that you can decide what to draw at that given moment.
-
-## The init event
-
-```javascript
-// handle the init event
-game.on("init", function() {
-	print("Initialized!");
-});
-```
-
-```lua
--- handle the init event
-game.on("init", function()
-	print("Initialized!")
-end)
-```
-
-```python
-# handle the init event
-def init():
-	print("Initialized!")
-```
-
-This event fires before any other event is fired, and it indicates that things
-like timers, assets and the renderer are ready to start.
-
-In the examples above you will see textures are loaded before this is fired, and 
-that is ok, because this event is most useful to indicate readiness, and 
-sometimes you want to wait while things like assets load before starting your 
-own code.
-
-
-## The update event
-
-```javascript
-// handle the update event
-game.on("update", function(dt) {
-	if keyboard.key_clicked(KB_ESCAPE) {
-		game.exit();
-	}
-})
-```
-
-```lua
--- handle the update event
-game.on("update", function(dt)
-	if keyboard.key_clicked(KB_ESCAPE) then
-		game.exit()
-	end
-end)
-```
-
-```python	
-# handle the update event
-def update(dt):
-	if keyboard.key_clicked(KB_ESCAPE):
-		game.exit()
-```
-
-The update event fires to request game logic from your code. You can specify how
-frequently this is called using the `update_frequency` property in your 
-`game.json`.
-
-This event provides a single argument called `dt` that specifies how much time 
-(in seconds, with floating point precision) has passed since the last update 
-event was fired.
-
-
-## The draw event
-
-```javascript
-// handle the draw event
-game.on("draw", function(dt) {
-	renderer.clear();
-	renderer.begin();
-	renderer.draw_texture(texture0, 10, 10, 100, 100);
-	renderer.present();
-})
-```
-
-```lua
--- handle the draw event
-game.on("draw", function(dt)
-	renderer.clear()
-	renderer.begin()
-	renderer.draw_texture(texture0, 10, 10, 100, 100)
-	renderer.present()
-end)
-```
-
-```python
-# handle the draw event
-def draw(dt):
-	renderer.clear()
-	renderer.begin()
-	renderer.draw_texture(texture0, 10, 10, 100, 100)
-	renderer.present()
-```
-
-The draw event fires when the engine wants to draw a new frame onto the screen.
-Like the update event, the draw event can also be controlled in the `game.json`
-file with properties `draw_frequency` and `v_sync`.
-
-This event also has a similar argument called `dt` that indicates how much time
-has passed since the last draw event was fired.
-
-### Draw Call Order
-
-It is useful to know that `renderer.clear()` clears the screen. `renderer.begin()` 
-begins a new batch of rendering, and `renderer.present()` sends that batch to the
-GPU for drawing.
-
-If you call multiple pairs of `begin()` and `present()` calls, you effectively
-get the ability to draw layers, which can be very useful when building the visual
-hierarchy of your game.
-
-
-## The key_down event
-
-```javascript
-// handle the draw event
-game.on("key_down", function(key_code) {
-	print("key down " + key_code.toString());
-})
-```
-```lua
--- handle the draw event
-game.on("key_down", function(key_code)
-   print("key down " .. key_code)
-end)
-```
-```python
-# handle the draw event
-def key_down(key_code):
-	print("key down " + str(key_code))
-```
-
-The key_down event tells you when a key on the keyboard has been pressed. As this
-is buffered, it is recommended that you use the [keyboard.key_down](#keyboard-key_down) 
-function instead if you need to know immediately when a key is pressed.
-
-## The key_click event
-
-```javascript
-// handle the draw event
-game.on("key_click", function(key_code) {
-	print("key clicked " + key_code.toString());
-})
-```
-```lua
--- handle the draw event
-game.on("key_click", function(key_code)
-   print("key clicked " .. key_code)
-end)
-```
-```python
-# handle the draw event
-def key_down(key_code):
-	print("key down " + str(key_code))
-```
-
-The key_click event tells you when a key on the keyboard has been clicked (meaning
-that the key was pressed, then released).
-
-## Custom Events
-
-> The code below should output to the console "my_event was triggered!"
-
-```javascript
-// handle the custom event.
-game.on("my_event", function(arg0) {
-	print(arg0);
-});
-
-// trigger an event.
-game.trigger("my_event", "my_event was triggered!");
-```
-
-```lua
--- handle the custom event.
-game.on("my_event", function(arg0)
-	print(arg0)
-end)
-
--- trigger an event.
-game.trigger("my_event", "my_event was triggered!")
-```
-
-```python
-# implement event handler.
-def my_event_handler(arg0):
-	print(arg0)
-
-# hook custom event handler.
-game.on("my_event", "my_event_handler")
-
-# trigger an event.
-game.trigger("my_event", "my_event was triggered!")
-```
-
-Events can be a great way of routing game logic, so Xentu allows you to create
-and subscribe to custom events just like you saw above.
-
-Python is the main outlier here, as you need to define a function before you can
-use `game.on(event, callback)`.
+<aside class="notice">
+<b>Note:</b> Python only hooks the <b>init</b>, <b>update</b>, <b>draw</b>, <b>key_up</b> and <b>key_click</b>
+events automatically if they exist in your entry point code file. Files loaded
+later with the include function do not do this.
+</aside>

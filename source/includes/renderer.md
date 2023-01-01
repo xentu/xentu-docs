@@ -196,6 +196,28 @@ When used in combination with functions like [sprite_map.get_frame_count](#sprit
 to get the number of frames available in a given sprite map group, you can easily 
 introduce basic looping animations into your game.
 
+## renderer.draw_tile_layer
+
+```javascript
+renderer.draw_tile_layer(tile_map_id, 0);
+```
+```lua
+renderer.draw_tile_layer(tile_map_id, 0)
+```
+```python
+renderer.draw_tile_layer(tile_map_id, 0)
+```
+
+<code class="definition">renderer.draw_tile_layer(<b>int</b> tile_map_id, <b>int</b> layer)</code>
+
+This function tells the renderer to draw all tiles for a specific layer of a 
+tile map. It's very common to need to draw things between layers of a tile map,
+so this makes sure you have the control you need when doing so.
+
+Also there are no options for position when drawing a tile layer, instead you
+should use the global transform functions such as [renderer.set_position](#renderer-set_position)
+to do that.
+
 ## renderer.set_background
 
 ```javascript
@@ -422,9 +444,6 @@ ONE_MINUS_SRC1_COLOR |
 SRC1_ALPHA |
 ONE_MINUS_SRC1_ALPHA |
 
-Please note that to access these constants in Python, you need to use the `const`
-global object. For example `const.ZERO` instead of `ZERO`.
-
 ## renderer.set_blend_preset
 
 ```javascript
@@ -471,6 +490,3 @@ BLEND_HUE |
 BLEND_SATURATION |
 BLEND_COLOR |
 BLEND_LUMINOSITY |
-
-Please note that to access these constants in Python, you need to use the `const`
-global object. For example `const.MULTIPLY` instead of `MULTIPLY`.

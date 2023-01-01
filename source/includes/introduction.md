@@ -1,6 +1,4 @@
-# Getting Started
-
-## Introduction
+# Introduction
 
 Hi, my name is Kodaloid (Steve), and I started the Xentu project in 2018 as an 
 experiment to see how performant an embedded scripting language could be for
@@ -59,8 +57,8 @@ For context, here are some examples of old devices Xentu will run fine on:
 - PC from 2007 with AMD graphics cards R600 (Radeon HD 2000+)
 
 There are concrete plans for ports to DirectX 9, 10, Android & iOS next year. 
-And a port to WASM in 2024. Each will change the minimums slightly and open 
-doors for more devices over time.
+And a possible port to Web Assembly. Each will change the minimums slightly and 
+open doors for more devices over time.
 
 ## About This Documentation
 
@@ -134,7 +132,7 @@ It will be kept live indefinitely for historic purposes, however I do not
 recommend using it as a guide for versions newer than 0.0.1 as the engine was
 completely rebuilt from the ground up.
 
-# Xentu Creator
+## Xentu Creator
 
 Xentu Creator is a cross-platform, also free to use IDE (integrated development environment) built in C# on the Avalonia framework.
 

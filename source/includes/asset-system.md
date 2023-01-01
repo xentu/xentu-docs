@@ -6,12 +6,10 @@ explore how to use the asset system when building games.
 Before that, here are some useful tips when using the asset manager:
 
 - Loaders are blocking by nature, so they can hang the game if you try to load a large asset (like some music, text file, or a big texture).
-- Some loaders return an integer instead of data, this integer is a throw-away pointer linking to the data to speed up processing.
-- Cached data is automatically cleaned up when your game shuts down, however there are methods to do this manually too (prefixed with `delete_`).
+- Most loaders return an integer instead of data, this integer is a throw-away pointer linking to the data to speed up processing.
+- Cached data is automatically cleaned up when your game shuts down, however there are methods to do this manually too (prefixed with `unload_`).
 
 ## assets.mount
-
-<code class="definition">assets.mount(<b>string</b> point, <b>string</b> path)</code>
 
 ```javascript
 assets.mount("/second", "/second.zip");
@@ -31,6 +29,8 @@ assets.mount("/second", "/second.zip")
 # then mount point is available, and can be used like this:
 id = assets.load_texture("/second/tex01.png")
 ```
+
+<code class="definition">assets.mount(<b>string</b> point, <b>string</b> path)</code>
 
 Xentu has a custom VFS (virtual file system) that allows assets to be loaded
 traditionally, or from within zip archives.
@@ -57,8 +57,6 @@ can sit inside.
 
 ## assets.read_text_file
 
-<code class="definition">assets.read_text_file(<b>string</b> path)</code>
-
 ```javascript
 const text = assets.read_text_file("/text_file.txt");
 ```
@@ -68,6 +66,8 @@ text = assets.read_text_file("/text_file.txt")
 ```python
 text = assets.read_text_file("/text_file.txt")
 ```
+
+<code class="definition">assets.read_text_file(<b>string</b> path)</code>
 
 This method is a reliable way for reading textual source from a file in the VFS,
 and supports modern text encoding.
@@ -84,8 +84,6 @@ by the language engine.
 
 ## assets.load_texture
 
-<code class="definition">assets.load_texture(<b>string</b> path)</code>
-
 ```javascript
 const texture_id = assets.read_text_file("/textures/example.png");
 ```
@@ -96,6 +94,8 @@ texture_id = assets.read_text_file("/textures/example.png")
 texture_id = assets.read_text_file("/textures/example.png")
 ```
 
+<code class="definition">assets.load_texture(<b>string</b> path)</code>
+
 Xentu currently uses the SDL_Image library for loading texture data into the
 engine. This library states that it can load BMP, GIF, JPEG, LBM, PCX, PNG, PNM
 (PPM/PGM/PBM), QOI, TGA, XCF, XPM, and simple SVG format images.
@@ -103,9 +103,12 @@ engine. This library states that it can load BMP, GIF, JPEG, LBM, PCX, PNG, PNM
 When calling load_texture, you receive a texture_id that can be used in many of
 the draw methods explored later in this documentation.
 
-## assets.load_font
+If you are loading in textures for pixel art, you may wish to use Nearest Neighbour
+interpolation to make sure that textures render correctly when scaled. To do this
+make sure to call [assets.set_interpolation](#assets-set_interpolation) before you
+load your textures.
 
-<code class="definition">assets.load_font(<b>string</b> path, <b>int</b> size)</code>
+## assets.load_font
 
 ```javascript
 const font_id = assets.load_font("/fonts/arial.ttf", 20);
@@ -116,6 +119,8 @@ font_id = assets.load_font("/fonts/arial.ttf", 20)
 ```python
 font_id = assets.load_font("/fonts/arial.ttf", 20)
 ```
+
+<code class="definition">assets.load_font(<b>string</b> path, <b>int</b> size)</code>
 
 The initial version of this engine had only support for sprite fonts, however
 Xentu now supports loading of true type font files directly from the
@@ -132,8 +137,6 @@ that come with your computer are copyrighted.
 
 ## assets.load_sound
 
-<code class="definition">assets.load_sound(<b>string</b> path)</code>
-
 ```javascript
 const sound_id = assets.load_sound("/sounds/fx01.wav");
 ```
@@ -143,6 +146,8 @@ sound_id = assets.load_sound("/sounds/fx01.wav")
 ```python
 sound_id = assets.load_sound("/sounds/fx01.wav")
 ```
+
+<code class="definition">assets.load_sound(<b>string</b> path)</code>
 
 The type of audio you can load into your game highly depends on what you've 
 setup in the `game.json` file, which is why configuration of that file is so
@@ -157,8 +162,6 @@ must be short enough to store as a sample, rather than streamed audio.
 
 ## assets.load_music
 
-<code class="definition">assets.load_music(<b>string</b> path)</code>
-
 ```javascript
 const music_id = assets.load_music("/music/track01.ogg");
 ```
@@ -168,6 +171,8 @@ music_id = assets.load_music("/music/track01.ogg")
 ```python
 music_id = assets.load_music("/music/track01.ogg")
 ```
+
+<code class="definition">assets.load_music(<b>string</b> path)</code>
 
 Same rules apply to music as sound loading from above. Make sure to match the
 audio settings you specify in `game.json` and you should be fine.
@@ -180,8 +185,6 @@ Music files can be in any of the formats you enable in `game.json`, however they
 must be long enough to store as a stream-able source.
 
 ## assets.load_shader
-
-<code class="definition">assets.load_shader(<b>string</b> vert, <b>string</b> frag)</code>
 
 ```javascript
 const shader1_vert = assets.read_text_file("/shaders/shader1.vert");
@@ -230,6 +233,8 @@ void main()
 }
 ```
 
+<code class="definition">assets.load_shader(<b>string</b> vert, <b>string</b> frag)</code>
+
 Xentu currently runs on SDL 2 with OpenGL 3.3 extensions, which means the 
 shaders you can load in should be written in GLSL, and match shader version 330
 or higher.
@@ -258,8 +263,6 @@ information. A link will appear here once the documentation for them has been
 added.
 
 ## assets.load_sprite_map
-
-<code class="definition">assets.load_sprite_map(<b>string</b> path)</code>
 
 ```javascript
 const map_id = assets.load_sprite_map("/sprite_maps/map1.xsf");
@@ -290,6 +293,8 @@ map_id = assets.load_sprite_map("/sprite_maps/map1.xsf")
 }
 ```
 
+<code class="definition">assets.load_sprite_map(<b>string</b> path)</code>
+
 XSF Sprite Map's are special JSON formatted files that describe regions and
 animations that can be found within a texture.
 
@@ -303,9 +308,34 @@ managed space, where if the sprite map is removed from the asset manager, that u
 These files are very important when building games, as they allow you to get
 animation into the game with very little time investment.
 
-## assets.create_textbox
+## assets.load_tile_map_tmx
 
-<code class="definition">assets.create_textbox(<b>float</b> x, <b>float</b> y, <b>float</b> w, <b>float</b> h)</code>
+```javascript
+const tile_map_id = assets.load_tile_map_tmx("/tile_maps/tile_map1.tmx", "/tile_maps/");
+```
+```lua
+tile_map_id = assets.load_tile_map_tmx("/tile_maps/tile_map1.tmx", "/tile_maps/")
+```
+```python
+tile_map_id = assets.load_tile_map_tmx("/tile_maps/tile_map1.tmx", "/tile_maps/")
+```
+
+<code class="definition">assets.load_tile_map_tmx(<b>string</b> path, <b>string</b> working_dir)</code>
+
+Load a <a href="https://www.mapeditor.org/" target="_blank">Tiled</a> TMX file, using the parser library 
+called `tmxlite`. Then convert it into an internally recognised tile map object.
+
+The converter has some restrictions:
+
+- Supports only orthogonal (right-down) tile layers (isometric will come soon).
+- External tile set's are not currently loaded through the VFS, which means if you zip up your assets, you should embed tile set's to make sure they load correctly.
+
+The second argument passed to this function `working_dir` helps the converter
+identify where to locate textures and adjoining files like tile set's. In the
+example on the right, the same relative folder path is provided, meaning textures
+are likely in the `/tile_maps/` folder too (or relative to it).
+
+## assets.create_textbox
 
 ```javascript
 const textbox_id = assets.create_textbox(10, 10, 300, 90);
@@ -317,6 +347,8 @@ textbox_id = assets.create_textbox(10, 10, 300, 90)
 textbox_id = assets.create_textbox(10, 10, 300, 90)
 ```
 
+<code class="definition">assets.create_textbox(<b>float</b> x, <b>float</b> y, <b>float</b> w, <b>float</b> h)</code>
+
 Drawing text is expensive in computer games. So to mitigate some many of the 
 performance penalties, Xentu uses a system that predefines surfaces on which 
 text can be measured, and drawn.
@@ -326,10 +358,6 @@ argument specified remain fixed whilst the textbox exists, however a textbox is
 affected by global transforms, so you can move, size and rotate in other ways.
 
 ## assets.unload_texture
-
-<code class="definition">assets.unload_texture(<b>int</b> asset_id)</code>
-
-Unload a texture.
 
 ```javascript
 assets.unload_texture(texture0);
@@ -341,11 +369,11 @@ assets.unload_texture(texture0)
 assets.unload_texture(texture0)
 ```
 
+<code class="definition">assets.unload_texture(<b>int</b> asset_id)</code>
+
+Unload a texture.
+
 ## assets.unload_font
-
-<code class="definition">assets.unload_font(<b>int</b> asset_id)</code>
-
-Unload a font.
 
 ```javascript
 assets.unload_font(font0);
@@ -357,11 +385,11 @@ assets.unload_font(font0)
 assets.unload_font(font0)
 ```
 
+<code class="definition">assets.unload_font(<b>int</b> asset_id)</code>
+
+Unload a font.
+
 ## assets.unload_sound
-
-<code class="definition">assets.unload_sound(<b>int</b> asset_id)</code>
-
-Unload a sound.
 
 ```javascript
 assets.unload_sound(sound0);
@@ -373,11 +401,11 @@ assets.unload_sound(sound0)
 assets.unload_sound(sound0)
 ```
 
+<code class="definition">assets.unload_sound(<b>int</b> asset_id)</code>
+
+Unload a sound.
+
 ## assets.unload_music
-
-<code class="definition">assets.unload_music(<b>int</b> asset_id)</code>
-
-Unload music.
 
 ```javascript
 assets.unload_music(music0);
@@ -389,11 +417,11 @@ assets.unload_music(music0)
 assets.unload_music(music0)
 ```
 
+<code class="definition">assets.unload_music(<b>int</b> asset_id)</code>
+
+Unload music.
+
 ## assets.unload_shader
-
-<code class="definition">assets.unload_shader(<b>int</b> asset_id)</code>
-
-Unload a shader.
 
 ```javascript
 assets.unload_shader(shader0);
@@ -405,11 +433,11 @@ assets.unload_shader(shader0)
 assets.unload_shader(shader0)
 ```
 
+<code class="definition">assets.unload_shader(<b>int</b> asset_id)</code>
+
+Unload a shader.
+
 ## assets.unload_sprite_map
-
-<code class="definition">assets.unload_sprite_map(<b>int</b> asset_id)</code>
-
-Unload a sprite map.
 
 ```javascript
 assets.unload_sprite_map(spriteMap0);
@@ -420,3 +448,61 @@ assets.unload_sprite_map(spriteMap0)
 ```python
 assets.unload_sprite_map(spriteMap0)
 ```
+
+<code class="definition">assets.unload_sprite_map(<b>int</b> asset_id)</code>
+
+Unload a sprite map.
+
+## assets.set_wrap
+
+```javascript
+assets.set_wrap(TEX_CLAMP_TO_EDGE);
+assets.set_wrap(TEX_CLAMP_TO_EDGE, TEX_CLAMP_TO_EDGE);
+```
+```lua
+assets.set_wrap(TEX_CLAMP_TO_EDGE)
+assets.set_wrap(TEX_CLAMP_TO_EDGE, TEX_CLAMP_TO_EDGE)
+```
+```python
+assets.set_wrap(TEX_CLAMP_TO_EDGE)
+assets.set_wrap(TEX_CLAMP_TO_EDGE, TEX_CLAMP_TO_EDGE)
+```
+
+<code class="definition">assets.set_wrap(<b>int</b> wrap_s, [<b>int</b> wrap_t])</code>
+
+Sets the texture wrapping mode when loading a texture. When the second argument 
+is omitted, the first is used for both. The following wrap modes are available:
+
+Mode | Description
+---- | -----------
+TEX_CLAMP_TO_EDGE | The coordinates that fall outside the range will sample from the edge of the texture (default).
+TEX_CLAMP_TO_BORDER | The coordinates that fall outside the range will be given a specified border colour.
+TEX_MIRRORED_REPEAT | The texture will repeat, but will mirror when the integer part of the coordinate is odd.
+TEX_REPEAT | The integer part of the coordinate will be ignored and a repeating pattern is formed.
+
+
+## assets.set_interpolation
+
+```javascript
+assets.set_interpolation(TEX_LINEAR);
+assets.set_interpolation(TEX_LINEAR, TEX_LINEAR);
+```
+```lua
+assets.set_interpolation(TEX_LINEAR)
+assets.set_interpolation(TEX_LINEAR, TEX_LINEAR)
+```
+```python
+assets.set_interpolation(TEX_LINEAR)
+assets.set_interpolation(TEX_LINEAR, TEX_LINEAR)
+```
+
+<code class="definition">assets.set_wrap(<b>int</b> min, [<b>int</b> mag])</code>
+
+Sets the texture sampling interpolation mode when loading a texture. When the
+second argument is omitted, the first is used for both. The following interpolation 
+modes are available:
+
+Mode | Description
+---- | -----------
+TEX_LINEAR | Linear sampling interpolation (can look blurred when scaling) (default).
+TEX_NEAREST | Nearest Neighbour sampling interpolation (good for pixel art).
