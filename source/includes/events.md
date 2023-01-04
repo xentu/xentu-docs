@@ -178,6 +178,34 @@ The key_click event tells you when a key on the keyboard has been clicked (meani
 that the key was pressed, then released).
 
 
+## The gamepad_button_down event
+
+```javascript
+// handle the gamepad_button_down event
+game.on("gamepad_button_down", function(info) {
+	print("gamepad button down " + info);
+	// prints something like: 0,0 (device, button)
+})
+```
+```lua
+-- handle the gamepad_button_down event
+game.on("gamepad_button_down", function(key_code)
+   print("key clicked " .. info)
+	-- prints something like: 0,0 (device, button)
+end)
+```
+```python
+# handle the gamepad_button_down event
+def gamepad_button_down(info):
+	print("key down " + info)
+	# prints something like: 0,0 (device, button)
+```
+
+The gamepad_button_down event tells you when a gamepad button has been pressed.
+Current Xentu supports 1 argument per event callback, so the device id and button
+index are sent as a string separated by a comma.
+
+
 ## The window_changed event
 
 ```javascript

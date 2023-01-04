@@ -67,7 +67,7 @@ text = assets.read_text_file("/text_file.txt")
 text = assets.read_text_file("/text_file.txt")
 ```
 
-<code class="definition">assets.read_text_file(<b>string</b> path)</code>
+<code class="definition"><b>string</b> result = assets.read_text_file(<b>string</b> path)</code>
 
 This method is a reliable way for reading textual source from a file in the VFS,
 and supports modern text encoding.
@@ -94,7 +94,7 @@ texture_id = assets.read_text_file("/textures/example.png")
 texture_id = assets.read_text_file("/textures/example.png")
 ```
 
-<code class="definition">assets.load_texture(<b>string</b> path)</code>
+<code class="definition"><b>int</b> result = assets.load_texture(<b>string</b> path)</code>
 
 Xentu currently uses the SDL_Image library for loading texture data into the
 engine. This library states that it can load BMP, GIF, JPEG, LBM, PCX, PNG, PNM
@@ -120,7 +120,7 @@ font_id = assets.load_font("/fonts/arial.ttf", 20)
 font_id = assets.load_font("/fonts/arial.ttf", 20)
 ```
 
-<code class="definition">assets.load_font(<b>string</b> path, <b>int</b> size)</code>
+<code class="definition"><b>int</b> result = assets.load_font(<b>string</b> path, <b>int</b> size)</code>
 
 The initial version of this engine had only support for sprite fonts, however
 Xentu now supports loading of true type font files directly from the
@@ -147,7 +147,7 @@ sound_id = assets.load_sound("/sounds/fx01.wav")
 sound_id = assets.load_sound("/sounds/fx01.wav")
 ```
 
-<code class="definition">assets.load_sound(<b>string</b> path)</code>
+<code class="definition"><b>int</b> result = assets.load_sound(<b>string</b> path)</code>
 
 The type of audio you can load into your game highly depends on what you've 
 setup in the `game.json` file, which is why configuration of that file is so
@@ -172,7 +172,7 @@ music_id = assets.load_music("/music/track01.ogg")
 music_id = assets.load_music("/music/track01.ogg")
 ```
 
-<code class="definition">assets.load_music(<b>string</b> path)</code>
+<code class="definition"><b>int</b> result = assets.load_music(<b>string</b> path)</code>
 
 Same rules apply to music as sound loading from above. Make sure to match the
 audio settings you specify in `game.json` and you should be fine.
@@ -233,7 +233,7 @@ void main()
 }
 ```
 
-<code class="definition">assets.load_shader(<b>string</b> vert, <b>string</b> frag)</code>
+<code class="definition"><b>int</b> result = assets.load_shader(<b>string</b> vert, <b>string</b> frag)</code>
 
 Xentu currently runs on SDL 2 with OpenGL 3.3 extensions, which means the 
 shaders you can load in should be written in GLSL, and match shader version 330
@@ -293,7 +293,7 @@ map_id = assets.load_sprite_map("/sprite_maps/map1.xsf")
 }
 ```
 
-<code class="definition">assets.load_sprite_map(<b>string</b> path)</code>
+<code class="definition"><b>int</b> result = assets.load_sprite_map(<b>string</b> path)</code>
 
 XSF Sprite Map's are special JSON formatted files that describe regions and
 animations that can be found within a texture.
@@ -320,7 +320,7 @@ tile_map_id = assets.load_tile_map_tmx("/tile_maps/tile_map1.tmx", "/tile_maps/"
 tile_map_id = assets.load_tile_map_tmx("/tile_maps/tile_map1.tmx", "/tile_maps/")
 ```
 
-<code class="definition">assets.load_tile_map_tmx(<b>string</b> path, <b>string</b> working_dir)</code>
+<code class="definition"><b>int</b> result = assets.load_tile_map_tmx(<b>string</b> path, <b>string</b> working_dir)</code>
 
 Load a <a href="https://www.mapeditor.org/" target="_blank">Tiled</a> TMX file, using the parser library 
 called `tmxlite`. Then convert it into an internally recognised tile map object.
@@ -347,7 +347,7 @@ textbox_id = assets.create_textbox(10, 10, 300, 90)
 textbox_id = assets.create_textbox(10, 10, 300, 90)
 ```
 
-<code class="definition">assets.create_textbox(<b>float</b> x, <b>float</b> y, <b>float</b> w, <b>float</b> h)</code>
+<code class="definition"><b>int</b> result = assets.create_textbox(<b>float</b> x, <b>float</b> y, <b>float</b> w, <b>float</b> h)</code>
 
 Drawing text is expensive in computer games. So to mitigate some many of the 
 performance penalties, Xentu uses a system that predefines surfaces on which 

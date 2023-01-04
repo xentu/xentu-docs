@@ -110,12 +110,13 @@ Here is a list of types that you'll commonly see in a function definition:
 Type | Description
 ---- | -----------
 bool | Boolean (true or false)
-int  | Integer (signed +/-), numerical value without floating point.
+int | Integer (signed +/-), numerical value without floating point.
 enum | One of several pre-defined values (an integer under the hood).
 float | Floating point numerical value.
 double | Double precision floating point numerical value.
 string | Represents a textual value (sequence of characters).
-mixed  | Means the type can be any of the above.
+mixed | Means the type can be any of the above.
+dict | A keyed array/dictionary of informational strings.
 
 ### Language & Spelling Notes
 

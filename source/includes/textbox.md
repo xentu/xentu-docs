@@ -99,6 +99,6 @@ width, height = textbox.measure_text(text0, font0, "Hello World")
 width, height = textbox.measure_text(text0, font0, "Hello World")
 ```
 
-<code class="definition">textbox.measure_text(<b>int</b> textbox_id, <b>int</b> font_id, <b>string</b> text)</code>
+<code class="definition"><b>mixed</b> result = textbox.measure_text(<b>int</b> textbox_id, <b>int</b> font_id, <b>string</b> text)</code>
 
 Returns the measured dimensions of the text that has been set onto a textbox.

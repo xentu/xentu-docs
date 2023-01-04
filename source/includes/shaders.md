@@ -21,7 +21,7 @@ var_loc = shader.get_location("my_variable")
 var_loc = shader.get_location("my_variable")
 ```
 
-<code class="definition">shaders.get_location(<b>string</b> variable_name)</code>
+<code class="definition"><b>int</b> result = shaders.get_location(<b>string</b> variable_name)</code>
 
 Gets the location id for a variable within the currently loaded shader. You need
 to call this if you are to use the methods below.

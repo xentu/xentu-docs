@@ -46,7 +46,7 @@ fi_delay, fi_flip_x, fi_flip_y = sprite_map.get_frame_info(sprite_map_id, "walk_
 fi_delay, fi_flip_x, fi_flip_y = sprite_map.get_frame_info(sprite_map_id, "walk_right", 0)
 ```
 
-<code class="definition">mixed = sprite_map.get_frame_info(<b>int</b> sprite_map_id, <b>string</b> group, <b>int</b> frame)</code>
+<code class="definition"><b>mixed</b> result = sprite_map.get_frame_info(<b>int</b> sprite_map_id, <b>string</b> group, <b>int</b> frame)</code>
 
 This function retrieves information about a frame on a sprite map frame. Info
 returned includes a delay value for how many milliseconds should be waited until 
@@ -65,6 +65,6 @@ count = sprite_map.get_frame_count(sprite_map_id, "walk_right")
 count = sprite_map.get_frame_count(sprite_map_id, "walk_right")
 ```
 
-<code class="definition">count = sprite_map.get_frame_count(<b>int</b> sprite_map_id, <b>string</b> group)</code>
+<code class="definition"><b>int</b> result = sprite_map.get_frame_count(<b>int</b> sprite_map_id, <b>string</b> group)</code>
 
 This function retrieves the number of frames stored in a sprite map group.
