@@ -151,7 +151,7 @@ def key_down(key_code):
 ```
 
 The key_down event tells you when a key on the keyboard has been pressed. As this
-is buffered, it is recommended that you use the [keyboard.key_down](#keyboard-key_down) 
+is buffered, it is recommended that you use the [keyboard.key_down](#key_down) 
 function instead if you need to know immediately when a key is pressed.
 
 ## The key_click event

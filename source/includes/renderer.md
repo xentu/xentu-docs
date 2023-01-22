@@ -15,7 +15,7 @@ is usually the built in fixed size canvas, which then gets drawn onto the
 screen. This final step allows Xentu to place or scale the canvas on a window 
 based on the viewport mode you specify in your configuration.
 
-## renderer.clear
+## clear
 
 ```javascript
 renderer.clear();
@@ -33,7 +33,7 @@ The clear function clears the currently active render target ready for new
 drawing. Unless you are doing something custom, this is usually called only once 
 at the beginning of a the draw event callback.
 
-## renderer.begin
+## begin
 
 ```javascript
 // layer 1
@@ -82,7 +82,7 @@ is set to true (true by default). This should be called typically after you call
 In the example on the right, false is passed to begin to retain the global 
 transforms used in the first draw call.
 
-## renderer.present
+## present
 
 <code class="definition">renderer.present()</code>
 
@@ -91,7 +91,7 @@ layer, you should always finish by calling `renderer.present()`. This carries ou
 the draw actions you asked it to, and draws onto the currently active render
 target.
 
-## renderer.draw_texture
+## draw_texture
 
 ```javascript
 renderer.draw_texture(texture_id, 0, 0, 100, 100);
@@ -107,11 +107,11 @@ renderer.draw_texture(texture_id, 0, 0, 100, 100);
 
 This function is used to draw an entire texture onto part of the current render
 target. Dimensions are measured in pixels, and the texture_id can be acquired by
-using the [assets.load_texture](#assets-load_texture) method.
+using the [assets.load_texture](#load_texture) method.
 
 The example on the right draws the chosen texture at 0,0. With a width and height of 100 x 100 pixels.
 
-## renderer.draw_sub_texture
+## draw_sub_texture
 
 ```javascript
 renderer.draw_sub_texture(<b>int</b> texture_id, 0, 0, 100, 100, 0, 0, 25, 25);
@@ -127,13 +127,13 @@ renderer.draw_sub_texture(<b>int</b> texture_id, 0, 0, 100, 100, 0, 0, 25, 25)
 
 This function is used to draw part of a texture onto part of the current render
 target. Dimensions are measured in pixels, and the texture_id can be acquired by
-using the [assets.load_texture](#assets-load_texture) method.
+using the [assets.load_texture](#load_texture) method.
 
 Arguments with the prefix "d" (so dx, dy etc...) are for the destination 
 coordinates meaning where on the canvas the pixels will be drawn, and prefix "s" 
 means source coordinates, referring to where on the texture to get pixels from.
 
-## renderer.draw_rectangle
+## draw_rectangle
 
 ```javascript
 renderer.draw_rectangle(20, 20, 40, 40);
@@ -148,9 +148,9 @@ renderer.draw_rectangle(20, 20, 40, 40)
 <code class="definition">renderer.draw_rectangle(<b>float</b> <b>float</b> x, <b>float</b> y, <b>float</b> width, <b>float</b> height)</code>
 
 This function draws a coloured rectangle at the given coordinates, based on the 
-colour picked when using the [renderer.set_foreground_color](#renderer-set_foreground) function.
+colour picked when using the [renderer.set_foreground_color](#set_foreground) function.
 
-## renderer.draw_textbox
+## draw_textbox
 
 ```javascript
 textbox.set_text(textbox_id, "Hello World");
@@ -170,10 +170,10 @@ renderer.draw_textbox(textbox_id)
 
 <code class="definition">renderer.draw_textbox(<b>int</b> textbox_id)</code>
 
-This function draws a textbox that has been created using the [assets.create_textbox](#assets-create_textbox)
+This function draws a textbox that has been created using the [assets.create_textbox](#create_textbox)
 function.
 
-## renderer.draw_sprite
+## draw_sprite
 
 ```javascript
 renderer.draw_sprite(sprite_map_id, "walk_right", 0, 10, 10, 32, 32);
@@ -192,11 +192,11 @@ texture onto the screen. However instead of providing the source texture
 coordinates, you tell the function which sprite map to look in, which group, 
 and which frame to get the coordinates (+ some extra info) from.
 
-When used in combination with functions like [sprite_map.get_frame_count](#sprite_map-get_frame_count)
+When used in combination with functions like [sprite_map.get_frame_count](#get_frame_count)
 to get the number of frames available in a given sprite map group, you can easily 
 introduce basic looping animations into your game.
 
-## renderer.draw_tile_layer
+## draw_tile_layer
 
 ```javascript
 renderer.draw_tile_layer(tile_map_id, 0);
@@ -215,10 +215,10 @@ tile map. It's very common to need to draw things between layers of a tile map,
 so this makes sure you have the control you need when doing so.
 
 Also there are no options for position when drawing a tile layer, instead you
-should use the global transform functions such as [renderer.set_position](#renderer-set_position)
+should use the global transform functions such as [renderer.set_position](#set_position)
 to do that.
 
-## renderer.set_background
+## set_background
 
 ```javascript
 renderer.set_background("#000000");
@@ -237,7 +237,7 @@ render target. The function expects a string with valid 6 digit HTML formatted
 hex colour code, with a hash tag prefix. In the future other colour systems will
 be added, so the hash tag is important.
 
-## renderer.set_foreground
+## set_foreground
 
 ```javascript
 renderer.set_foreground("#000000");
@@ -259,7 +259,7 @@ The function expects a string with valid 6 digit HTML formatted
 hex colour code, with a hash tag prefix. In the future other colour systems will
 be added, so the hash tag is important.
 
-## renderer.set_window_mode
+## set_window_mode
 
 ```javascript
 renderer.set_window_mode(0);
@@ -284,7 +284,7 @@ Mode ID | Description
 
 Further modes will be added in future updates to the engine.
 
-## renderer.set_position
+## set_position
 
 ```javascript
 renderer.set_position(52, 33);
@@ -300,7 +300,7 @@ renderer.set_position(52, 33)
 
 This function allows you to set the global translation coordinates for drawing.
 
-## renderer.set_origin
+## set_origin
 
 ```javascript
 renderer.set_origin(0, 0);
@@ -317,7 +317,7 @@ renderer.set_origin(0, 0)
 This function allows you to set the global transform origin coordinates for drawing.
 
 
-## renderer.set_rotation
+## set_rotation
 
 ```javascript
 renderer.set_rotation(45);
@@ -334,7 +334,7 @@ renderer.set_rotation(45)
 This function allows you to set the global rotation angle (degrees) for drawing, 
 which pairs well with `set_origin`.
 
-## renderer.set_scale
+## set_scale
 
 ```javascript
 renderer.set_scale(1, 1);
@@ -351,7 +351,7 @@ renderer.set_scale(1, 1)
 This function allows you to set the global scale transform for drawing. Setting
 both x and y to 2 for example would make all graphics you draw twice as big.
 
-## renderer.set_shader
+## set_shader
 
 ```javascript
 renderer.set_shader(shader_id);
@@ -368,7 +368,7 @@ renderer.set_shader(shader_id)
 This function sets which shader program is currently being used. Passing 0 as
 the shader_id switches back to the built in shader.
 
-## renderer.set_alpha
+## set_alpha
 
 ```javascript
 renderer.set_alpha(0.5);
@@ -388,7 +388,7 @@ textures (given that blending is enabled, with the correct blend function).
 By default the correct blending function is set to enable alpha-blending. However
 if you change the blend function, the value you set here might have no effect.
 
-## renderer.set_blend
+## set_blend
 
 ```javascript
 renderer.set_blend(true);
@@ -405,7 +405,7 @@ renderer.set_blend(true)
 This function enables or disables the various blending features available in the
 renderer. By default blending is enabled.
 
-## renderer.set_blend_func
+## set_blend_func
 
 ```javascript
 renderer.set_blend_func(SRC_ALPHA, ONE_MINUS_SRC_ALPHA);
@@ -444,7 +444,7 @@ ONE_MINUS_SRC1_COLOR |
 SRC1_ALPHA |
 ONE_MINUS_SRC1_ALPHA |
 
-## renderer.set_blend_preset
+## set_blend_preset
 
 ```javascript
 renderer.set_blend_func(BLEND_MULTIPLY, true);

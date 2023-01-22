@@ -18,11 +18,11 @@ drawing layers, and functions for reading and writing to the tile maps you load.
 
 This section describes those functions, and demonstrates how to use them. To see
 how a tile map can be loaded, please visit the [Asset System](#asset-system) 
-section. And to see how to draw a tile layer, visit the [renderer.draw_tile_layer()](#renderer-draw_tile_layer)
+section. And to see how to draw a tile layer, visit the [renderer.draw_tile_layer()](#draw_tile_layer)
 section.
 
 
-## tile_map.get_layer
+## get_layer
 
 ```javascript
 const layer_info = tile_map.get_layer(tile_map_id, layer_id);
@@ -40,7 +40,7 @@ This function gives you a way to read a collection of property variables for a
 tile map layer. The first argument is the id of the tile map you loaded, and the
 layer_id is the numerical index of the layer to retrieve info for.
 
-## tile_map.get_layer_tiles
+## get_layer_tiles
 
 ```javascript
 const tiles = tile_map.get_layer_tiles(tile_map_id, layer_id);
@@ -56,11 +56,11 @@ tiles = tile_map.get_layer_tiles(tile_map_id, layer_id)
 
 This function retrieves a raw integer array of tile indices associated with a 
 tile map layer. This can be useful for a number of reasons, however it is not
-required for just drawing a tile map. For that see the [renderer.draw_tile_layer()](#renderer-draw_tile_layer) 
+required for just drawing a tile map. For that see the [renderer.draw_tile_layer()](#draw_tile_layer) 
 function.
 
 
-## tile_map.get_layer_objects
+## get_layer_objects
 
 ```javascript
 const objects = tile_map.get_layer_objects(tile_map_id, layer_id);
@@ -107,7 +107,7 @@ polygon | A set of relative 2d points, which may make up a closed shape.
 tile | A single tile that can be drawn individually.
 text | Represents an area of text.
 
-## tile_map.get_tile
+## get_tile
 
 ```javascript
 const tile_info = tile_map.get_tile(tile_map_id, layer_id, tile_id);
@@ -123,7 +123,7 @@ tile_info = tile_map.get_tile(tile_map_id, layer_id, tile_id)
 
 Gets a keyed array of associated variables for an individual tile.
 
-## tile_map._get_object
+## get_object
 
 ```javascript
 const tile_info = tile_map.get_object(tile_map_id, layer_id, object_id);
@@ -140,7 +140,7 @@ tile_info = tile_map.get_object(tile_map_id, layer_id, object_id)
 Gets a single object from a tile map layer, see above for a definition of the
 information you can expect to be returned.
 
-## tile_map.change_layer
+## change_layer
 
 ```javascript
 tile_map.change_layer(tile_map_id, layer_id, "opacity", 0.4);
@@ -156,7 +156,7 @@ tile_map.change_layer(tile_map_id, layer_id, "opacity", 0.4)
 
 Use this function to change the property value for a layer.
 
-## tile_map.change_tile
+## change_tile
 
 ```javascript
 tile_map.change_tile(tile_map_id, layer_id, "name", "New Name");
@@ -172,7 +172,7 @@ tile_map.change_tile(tile_map_id, layer_id, "opacity", "New Name")
 
 Use this function to change the property value for a tile on a layer.
 
-## tile_map_change_object
+## change_object
 
 ```javascript
 tile_map.change_object(tile_map_id, layer_id, object_id, "name", "New Name");

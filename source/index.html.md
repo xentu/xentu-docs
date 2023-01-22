@@ -23,7 +23,9 @@ includes:
   - tile-map
   - textbox
   - audio-system
-  - input
+  - input-keyboard
+  - input-mouse
+  - input-gamepad
   - shaders
 
 

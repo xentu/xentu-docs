@@ -47,13 +47,13 @@ Drawing text is expensive in computer games. So to mitigate some many of the
 performance penalties, Xentu uses a system that predefines surfaces on which 
 text can be measured, and drawn onto objects called textboxes.
 
-You can create a textbox using the asset system function [assets.create_textbox](#assets-create_textbox)
+You can create a textbox using the asset system function [assets.create_textbox](#create_textbox)
 Once you've created a textbox, you can interact with it by using the functions
 in this section.
 
 On the right is an example of how a textbox is created, then used.
 
-## textbox.set_text
+## set_text
 
 ```javascript
 textbox.set_text(text0, font0, "Hello World");
@@ -69,7 +69,7 @@ textbox.set_text(text0, font0, "Hello World")
 
 Sets the text and font that should appear on a textbox when rendered.
 
-## textbox.set_color
+## set_color
 
 ```javascript
 textbox.set_color(text0, font0, "#FFFF00");
@@ -85,7 +85,7 @@ textbox.set_color(text0, font0, "#FFFF00")
 
 Sets the text colour for a textbox when rendered. 
 
-## textbox.measure_text
+## measure_text
 
 ```javascript
 const result = textbox.measure_text(text0, font0, "Hello World");

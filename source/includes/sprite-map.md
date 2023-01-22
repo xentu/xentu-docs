@@ -28,13 +28,13 @@ Xentu provides a sprite map file type called XSF written in an easy to understan
 JSON format.
 
 These XSF files can be loaded through the asset system via the function 
-[assets.load_sprite_map](#assets-load_sprite_map), which also conveniently loads 
+[assets.load_sprite_map](#load_sprite_map), which also conveniently loads 
 the underlying texture, and auto-disposes once finished.
 
 Xentu Creator provides all the tools you need for creating, and testing sprite
 maps.
 
-## sprite_map.get_frame_info
+## get_frame_info
 
 ```javascript
 var fi = sprite_map.get_frame_info(sprite_map_id, "walk_right", 0);
@@ -53,7 +53,7 @@ returned includes a delay value for how many milliseconds should be waited until
 the next frame should be shown in an animation, and two booleans that identify
 whether a graphic is drawn flipped on the x or y axis.
 
-## sprite_map.get_frame_count
+## get_frame_count
 
 ```javascript
 var count = sprite_map.get_frame_count(sprite_map_id, "walk_right");

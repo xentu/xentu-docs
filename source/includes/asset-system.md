@@ -9,7 +9,7 @@ Before that, here are some useful tips when using the asset manager:
 - Most loaders return an integer instead of data, this integer is a throw-away pointer linking to the data to speed up processing.
 - Cached data is automatically cleaned up when your game shuts down, however there are methods to do this manually too (prefixed with `unload_`).
 
-## assets.mount
+## mount
 
 ```javascript
 assets.mount("/second", "/second.zip");
@@ -55,7 +55,7 @@ forward.
 can sit inside.
 </aside>
 
-## assets.read_text_file
+## read_text_file
 
 ```javascript
 const text = assets.read_text_file("/text_file.txt");
@@ -82,7 +82,7 @@ as a variable in your game code after calling this.
 There is no file type restriction as long as it can be interpreted as a string
 by the language engine.
 
-## assets.load_texture
+## load_texture
 
 ```javascript
 const texture_id = assets.read_text_file("/textures/example.png");
@@ -105,10 +105,10 @@ the draw methods explored later in this documentation.
 
 If you are loading in textures for pixel art, you may wish to use Nearest Neighbour
 interpolation to make sure that textures render correctly when scaled. To do this
-make sure to call [assets.set_interpolation](#assets-set_interpolation) before you
+make sure to call [assets.set_interpolation](#set_interpolation) before you
 load your textures.
 
-## assets.load_font
+## load_font
 
 ```javascript
 const font_id = assets.load_font("/fonts/arial.ttf", 20);
@@ -135,7 +135,7 @@ Make sure to only use fonts that you have permission to use. Many of the fonts
 that come with your computer are copyrighted.
 </aside>
 
-## assets.load_sound
+## load_sound
 
 ```javascript
 const sound_id = assets.load_sound("/sounds/fx01.wav");
@@ -160,7 +160,7 @@ will very likely experience unpredictable behaviour.
 Sound files can be in any of the formats you enable in `game.json`, however they
 must be short enough to store as a sample, rather than streamed audio.
 
-## assets.load_music
+## load_music
 
 ```javascript
 const music_id = assets.load_music("/music/track01.ogg");
@@ -184,7 +184,7 @@ to make sure it does not interfere with the visual aspect of the game.
 Music files can be in any of the formats you enable in `game.json`, however they
 must be long enough to store as a stream-able source.
 
-## assets.load_shader
+## load_shader
 
 ```javascript
 const shader1_vert = assets.read_text_file("/shaders/shader1.vert");
@@ -262,7 +262,7 @@ Xentu has special functions for communicating with a shader to pass it extra
 information. A link will appear here once the documentation for them has been
 added.
 
-## assets.load_sprite_map
+## load_sprite_map
 
 ```javascript
 const map_id = assets.load_sprite_map("/sprite_maps/map1.xsf");
@@ -308,7 +308,7 @@ managed space, where if the sprite map is removed from the asset manager, that u
 These files are very important when building games, as they allow you to get
 animation into the game with very little time investment.
 
-## assets.load_tile_map_tmx
+## load_tile_map_tmx
 
 ```javascript
 const tile_map_id = assets.load_tile_map_tmx("/tile_maps/tile_map1.tmx", "/tile_maps/");
@@ -335,19 +335,19 @@ identify where to locate textures and adjoining files like tile set's. In the
 example on the right, the same relative folder path is provided, meaning textures
 are likely in the `/tile_maps/` folder too (or relative to it).
 
-## assets.create_textbox
+## create_textbox
 
 ```javascript
-const textbox_id = assets.create_textbox(10, 10, 300, 90);
+const textbox_id = assets.create_textbox(300, 90);
 ```
 ```lua
-textbox_id = assets.create_textbox(10, 10, 300, 90)
+textbox_id = assets.create_textbox(300, 90)
 ```
 ```python
 textbox_id = assets.create_textbox(10, 10, 300, 90)
 ```
 
-<code class="definition"><b>int</b> result = assets.create_textbox(<b>float</b> x, <b>float</b> y, <b>float</b> w, <b>float</b> h)</code>
+<code class="definition"><b>int</b> result = assets.create_textbox(<b>float</b> w, <b>float</b> h, [<b>bool</b> wrap])</code>
 
 Drawing text is expensive in computer games. So to mitigate some many of the 
 performance penalties, Xentu uses a system that predefines surfaces on which 
@@ -357,7 +357,7 @@ So to draw text, we first need to create textbox areas using this method. The
 argument specified remain fixed whilst the textbox exists, however a textbox is
 affected by global transforms, so you can move, size and rotate in other ways.
 
-## assets.unload_texture
+## unload_texture
 
 ```javascript
 assets.unload_texture(texture0);
@@ -373,7 +373,7 @@ assets.unload_texture(texture0)
 
 Unload a texture.
 
-## assets.unload_font
+## unload_font
 
 ```javascript
 assets.unload_font(font0);
@@ -389,7 +389,7 @@ assets.unload_font(font0)
 
 Unload a font.
 
-## assets.unload_sound
+## unload_sound
 
 ```javascript
 assets.unload_sound(sound0);
@@ -405,7 +405,7 @@ assets.unload_sound(sound0)
 
 Unload a sound.
 
-## assets.unload_music
+## unload_music
 
 ```javascript
 assets.unload_music(music0);
@@ -421,7 +421,7 @@ assets.unload_music(music0)
 
 Unload music.
 
-## assets.unload_shader
+## unload_shader
 
 ```javascript
 assets.unload_shader(shader0);
@@ -437,7 +437,7 @@ assets.unload_shader(shader0)
 
 Unload a shader.
 
-## assets.unload_sprite_map
+## unload_sprite_map
 
 ```javascript
 assets.unload_sprite_map(spriteMap0);
@@ -453,7 +453,7 @@ assets.unload_sprite_map(spriteMap0)
 
 Unload a sprite map.
 
-## assets.set_wrap
+## set_wrap
 
 ```javascript
 assets.set_wrap(TEX_CLAMP_TO_EDGE);
@@ -481,7 +481,7 @@ TEX_MIRRORED_REPEAT | The texture will repeat, but will mirror when the integer 
 TEX_REPEAT | The integer part of the coordinate will be ignored and a repeating pattern is formed.
 
 
-## assets.set_interpolation
+## set_interpolation
 
 ```javascript
 assets.set_interpolation(TEX_LINEAR);
