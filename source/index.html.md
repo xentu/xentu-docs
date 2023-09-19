@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python: Python
 
 toc_footers:
-  - <span class="designed-for">Designed For v0.0.4</span>
+  - <span class="designed-for">Designed For v0.0.7+</span>
   - <hr class="footer-hr" />
   - <a href='https://xentu.net'>Xentu Website</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>

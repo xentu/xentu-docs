@@ -135,15 +135,16 @@ completely rebuilt from the ground up.
 
 ## Xentu Creator
 
-Xentu Creator is a cross-platform, also free to use IDE (integrated development environment) built in C# on the Avalonia framework.
+Xentu Creator is a free, all-in one IDE for creating games with the Xentu game engine.
 
-![First screenshot of Xentu Creator](/images/screenshots/creator-01.jpg)
+![First screenshot of Xentu Creator](/images/screenshots/creator-01.png)
 
 It has everything you need to get started building games with Xentu. Including 
 a code editor with syntax highlighting. A sprite map editor with animation 
-playback. debugging, binary acquisition, game publishing and much more.
+playback. A conversation editor for dialog prompts, debugging, game publishing 
+and much more.
 
-![Second screenshot of Xentu Creator](/images/screenshots/creator-02.jpg)
+![Second screenshot of Xentu Creator](/images/screenshots/creator-02.png)
 
 If you are new to Xentu, this is the best way to get started without hiccups.
 Give Creator a try today by visiting the [download](https://xentu.net/download)

@@ -114,13 +114,13 @@ The example on the right draws the chosen texture at 0,0. With a width and heigh
 ## draw_sub_texture
 
 ```javascript
-renderer.draw_sub_texture(<b>int</b> texture_id, 0, 0, 100, 100, 0, 0, 25, 25);
+renderer.draw_sub_texture(texture_id, 0, 0, 100, 100, 0, 0, 25, 25);
 ```
 ```lua
-renderer.draw_sub_texture(<b>int</b> texture_id, 0, 0, 100, 100, 0, 0, 25, 25)
+renderer.draw_sub_texture(texture_id, 0, 0, 100, 100, 0, 0, 25, 25)
 ```
 ```python
-renderer.draw_sub_texture(<b>int</b> texture_id, 0, 0, 100, 100, 0, 0, 25, 25)
+renderer.draw_sub_texture(texture_id, 0, 0, 100, 100, 0, 0, 25, 25)
 ```
 
 <code class="definition">renderer.draw_sub_texture(<b>int</b> texture_id, <b>float</b> dx, <b>float</b> dy, <b>float</b> dw, <b>float</b> dh, <b>float</b> sx, <b>float</b> sy, <b>float</b> sw, <b>float</b> sh)</code>
@@ -278,7 +278,7 @@ the valid window modes available:
 
 Mode ID | Description
 ------- | -----------
-0 | Windowed (resizable)
+0 | Windowed
 1 | Full-screen
 2 | Borderless Full-screen
 
